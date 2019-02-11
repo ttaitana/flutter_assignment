@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './register.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -18,6 +19,10 @@ class LoginPageState extends State<LoginPage> {
         key: _formKey,
         child: ListView(
           children: <Widget>[
+            Image.asset(
+              'resources/flutter-logo.png',
+              height: 100,
+            ),
             TextFormField(
                 decoration: InputDecoration(
                     labelText: 'User Id',
@@ -43,6 +48,33 @@ class LoginPageState extends State<LoginPage> {
                     return 'Please enter password';
                   }
                 }),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: RaisedButton(
+                child: Text('LOGIN'),
+                onPressed: () {
+                  if (_formKey.currentState.validate()) {
+                    Scaffold.of(context).showSnackBar(
+                        SnackBar(content: Text('Process Data')));
+                  }
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  InkWell(
+                    child: Text('Register New Account'),
+                    highlightColor: Colors.orange,
+                    onTap: (){
+                      Navigator.pushNamed(context, '/register');
+                    },
+                  )
+                ],
+              ),
+            )
           ],
         ),
       ),
