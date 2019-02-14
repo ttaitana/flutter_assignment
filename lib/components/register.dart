@@ -9,6 +9,15 @@ class Registation extends StatefulWidget {
 
 class RegistationState extends State<Registation> {
   final _regisKey = GlobalKey<FormState>();
+  TextFormField user;
+  TextEditingController _controllerUser = TextEditingController();
+
+  TextFormField psw;
+  TextEditingController _controllerPsw = TextEditingController();
+
+  TextFormField pswRe;
+  TextEditingController _controllerPswRe = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,57 +27,65 @@ class RegistationState extends State<Registation> {
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Form(
+          key: _regisKey,
           child: ListView(
             children: <Widget>[
-              TextFormField(
+              user = TextFormField(
+                  controller: _controllerUser,
                   decoration: InputDecoration(
-                      labelText: 'User Id',
+                      labelText: 'email',
                       // hintText: 'Please enter user id',
                       icon: Icon(Icons.person)),
                   keyboardType: TextInputType.emailAddress,
-                  onSaved: (value) => print(value),
                   validator: (value) {
                     if (value.isEmpty) {
                       return 'กรุณาระบุข้อมูลให้ครบถ้วน';
+                    } else if (_controllerUser.text == 'admin') {
+                      return 'user นี้มีอยู่ในระบบแล้ว';
                     }
                   }),
-              TextFormField(
+              psw = TextFormField(
+                  controller: _controllerPsw,
                   decoration: InputDecoration(
                       labelText: 'Password',
                       hintText: 'Please input your password',
                       icon: Icon(Icons.lock)),
                   obscureText: true,
                   keyboardType: TextInputType.text,
-                  onSaved: (value) => print(value),
                   validator: (value) {
                     if (value.isEmpty) {
                       return 'Please enter password';
+                    }else if (_controllerPsw.text != _controllerPswRe.text) {
+                      return 'Password ไม่ตรงกัน';
                     }
                   }),
-              TextFormField(
+              pswRe = TextFormField(
+                  controller: _controllerPswRe,
                   decoration: InputDecoration(
                       labelText: 'Re-Password',
                       hintText: 'Please input your password',
                       icon: Icon(Icons.lock)),
                   obscureText: true,
                   keyboardType: TextInputType.text,
-                  onSaved: (value) => print(value),
                   validator: (value) {
                     if (value.isEmpty) {
                       return 'Please enter password';
+                    } else if (_controllerPsw.text != _controllerPswRe.text) {
+                      return 'Password ไม่ตรงกัน';
                     }
                   }),
-                  Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: RaisedButton(
-                  child: Text('LOGIN'),
-                  onPressed: () {
-                    if (_regisKey.currentState.validate()) {
-                      Scaffold.of(context).showSnackBar(
-                          SnackBar(content: Text('Process Data')));
-                    }
-                  },
-                )),
+              Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: RaisedButton(
+                    child: Text('CONTINUE'),
+                    onPressed: () {
+                      if (_regisKey.currentState.validate()) {
+                        // Scaffold.of(context).showSnackBar(
+                        //     SnackBar(content: Text('Process Data')));
+                        Navigator.pop(context);
+                      }
+                    },
+                  )),
             ],
           ),
         ),

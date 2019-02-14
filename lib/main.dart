@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_assignment/components/loginPage.dart';
 import 'package:flutter_assignment/components/register.dart';
+import 'package:flutter_assignment/components/mainPage.dart';
 
 void main() => runApp(MyApp());
 
@@ -9,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: "Assgiment",
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
       routes: {
       '/' : (context) => LoginPage(),
       '/register' : (context) => Registation(),
+      '/home': (context) => MainPage()
       },
     );
   }
