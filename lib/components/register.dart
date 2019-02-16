@@ -54,7 +54,7 @@ class RegistationState extends State<Registation> {
                   keyboardType: TextInputType.text,
                   validator: (value) {
                     if (value.isEmpty) {
-                      return 'Please enter password';
+                      return 'กรุณาระบุข้อมูลให้ครบถ้วน';
                     }else if (_controllerPsw.text != _controllerPswRe.text) {
                       return 'Password ไม่ตรงกัน';
                     }
@@ -69,7 +69,7 @@ class RegistationState extends State<Registation> {
                   keyboardType: TextInputType.text,
                   validator: (value) {
                     if (value.isEmpty) {
-                      return 'Please enter password';
+                      return 'กรุณาระบุข้อมูลให้ครบถ้วน';
                     } else if (_controllerPsw.text != _controllerPswRe.text) {
                       return 'Password ไม่ตรงกัน';
                     }

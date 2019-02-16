@@ -26,8 +26,8 @@ class LoginPageState extends State<LoginPage> {
           child: ListView(
             children: <Widget>[
               Image.asset(
-                'resources/flutter-logo.png',
-                height: 100,
+                'resources/pikachu.jpg',
+                height: 230,
               ),
               user = TextFormField(
                   controller: _controllerUser,
